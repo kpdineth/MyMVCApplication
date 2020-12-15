@@ -18,7 +18,7 @@ namespace MyMVCApplication.Controllers
                 new Student() { StudentId = 4, StudentName = "Chris" , Age = 17 } ,
                 new Student() { StudentId = 4, StudentName = "Rob" , Age = 19 }
             };
-        //GET: Student
+        //HTTPGET: Student,The HTTP GET request embeds data into a query string
         public ActionResult Index()
         {
             //var x = "This is Index action method of StudentController";
@@ -37,8 +37,18 @@ namespace MyMVCApplication.Controllers
         [HttpPost]
         public ActionResult Edit(Student std)
         {
+            var id = std.StudentId;
+            var name = std.StudentName;
+            var age = std.Age;
+            var standardName = std.standard.StandardName;
             // update student to the database
 
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Edit()
+        {
             return RedirectToAction("Index");
         }
 
