@@ -1,13 +1,15 @@
 ﻿@model MyMVCApplication.Models.Student
-
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Edit</h2>
-
+@*You can specify controler and action here. But in simple form they havent. In this case it is smart enogh to find the student controler and edit action
+but alsway good specify the controleer and action in form*@
+@* This is the form tag I showed you in source, still confusing? uba nidi da? poddak theruna dan, ela ayeth balanna monawa hari thibboth heta haswasa ahanna. dawal mama office.okbye.bye *@
 @using (Html.BeginForm())
+
 {
     @Html.AntiForgeryToken()
 
@@ -16,7 +18,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.StudentId)
-
+        @* Here it binds value from std object to the controls (text boxes ) and then save submit button is clicked, updated object is posted back through the form*@
         <div class="form-group">
             @Html.LabelFor(model => model.StudentName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -29,7 +31,7 @@
             @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" < })
+                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -44,4 +46,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-

@@ -23,6 +23,7 @@ namespace MyMVCApplication.Controllers
         {
             //var x = "This is Index action method of StudentController";
             return View(studentList);
+            //return View(studentList.OrderBy(s => s.StudentId).ToList());
             //return ViewPage("This is Index action method of StudentController");
         }
 
@@ -34,16 +35,56 @@ namespace MyMVCApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult Edit(Student std)
+        [HttpPost]//THis is the post when Save is clicked. It posts all updated model data back
+        public ActionResult Edit(Student std) // creating std object from student class it has all the properies in student 
+        //public ActionResult Edit([Bind(Include = "StudentId, StudentName")] Student std) // need to check with chamilar ( This is one way of doing it. Your avove line is also correct ) 
         {
-            var id = std.StudentId;
-            var name = std.StudentName;
-            var age = std.Age;
-            var standardName = std.standard.StandardName;
+            //anything else?
+            // i need to go throu if i have any thing i ask tommorow 
+            //Is this confusing? get ididnt undersd which part?
+            //var id = std.StudentId;
+            //var name = std.StudentName;
+            //var age = std.Age;
+            //var standardName = std.standard.StandardName;
             // update student to the database
 
-            return RedirectToAction("Index");
+            //var id = std.StudentId;
+            //var name = std.StudentName;
+            //var age = std.Age;
+            //var standardName = std.StudentName; // this one need to check with chamiallar 
+            //If you have database, this should have updated to database.
+            //do you understand now?
+            //Here you shoud udpate
+            //return RedirectToAction("Index","Home");
+
+            var student = studentList.Where(s => s.StudentId == std.StudentId).FirstOrDefault();
+            studentList.Remove(student);
+            studentList.Add(std);
+
+            //return View("Edit");
+
+            return View("Index");
+        }
+
+        [HttpGet]//This is a get. It get the details of one student
+        public ActionResult Edit(int? id) // creating std object from student class it has all the properies in student 
+        //public ActionResult Edit([Bind(Include = "StudentId, StudentName")] Student std) // need to check with chamilar 
+        {
+            // update student to the database - This is wrong, You cant update here. Its jsut a get/select from the list or db
+
+            //Student stdt = new Student();
+            //Standard st12 = new Standard();
+
+            //Ok when the edit button is clicked in the grid it is sending a get request to this action method 
+
+            //First you have to get the student from the student list. In this case from the top list
+            Student std = studentList.FirstOrDefault(s => s.StudentId == id);//Here it select the student object using the id from above list
+
+            return View(std);   // in here is it returning the object to the from that you show me few seconds ago?
+            // Its passing std object to the Edit view ( Edit.cshtml )
+            //return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Edit");
+
         }
 
 
