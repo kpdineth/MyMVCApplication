@@ -23,6 +23,7 @@ namespace MyMVCApplication.Controllers
         {
             //var x = "This is Index action method of StudentController";
             return View(studentList);
+            return View(studentList.OrderBy(s => s.StudentId).ToList());
             //return ViewPage("This is Index action method of StudentController");
         }
 
@@ -35,11 +36,31 @@ namespace MyMVCApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Student std)
+        public ActionResult Edit(Student std) // creating std object from student class it has all the properies in student 
+        //public ActionResult Edit([Bind(Include = "StudentId, StudentName")] Student std) // need to check with chamilar 
         {
             // update student to the database
 
-            return RedirectToAction("Index");
+            var id = std.StudentId;
+            var name = std.StudentName;
+            var age = std.Age;
+            var standardName = std.StudentName; // this one need to check with chamiallar 
+
+            //return RedirectToAction("Index","Home");
+            return View("Index");
+        }
+        public ActionResult Edit(int? id) // creating std object from student class it has all the properies in student 
+        //public ActionResult Edit([Bind(Include = "StudentId, StudentName")] Student std) // need to check with chamilar 
+        {
+            // update student to the database
+
+            //Student stdt = new Student();
+            //Standard st12 = new Standard();
+
+            return View("Edit");
+            //return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Edit");
+
         }
 
         [ActionName("Find")]
