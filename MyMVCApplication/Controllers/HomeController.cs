@@ -10,7 +10,7 @@ namespace MyMVCApplication.Controllers
     {
         public ActionResult Index()
         {
-            //ViewBag.Message = "This is Index action method of HomeController";
+            //ViewBag.Message = "This is Index action method of HomeController";Test
             return View();
         }
 
