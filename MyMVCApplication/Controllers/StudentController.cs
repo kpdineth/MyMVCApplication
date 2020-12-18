@@ -21,8 +21,10 @@ namespace MyMVCApplication.Controllers
         //HTTPGET: Student,The HTTP GET request embeds data into a query string
         public ActionResult Index()
         {
+            EmEntities emDatabase = new EmEntities();
+            List<TestTable> dbStudentList = emDatabase.TestTables.ToList();
             //var x = "This is Index action method of StudentController";
-            return View(studentList);
+            return View(dbStudentList);
             //return View(studentList.OrderBy(s => s.StudentId).ToList());
             //return ViewPage("This is Index action method of StudentController");
         }

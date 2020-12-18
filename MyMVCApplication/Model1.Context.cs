@@ -28,6 +28,6 @@ namespace MyMVCApplication
         public virtual DbSet<tbl_Employee> tbl_Employee { get; set; }
         public virtual DbSet<TestTable> TestTables { get; set; }
 
-        public System.Data.Entity.DbSet<MyMVCApplication.Models.Student> Students { get; set; }
+        //public System.Data.Entity.DbSet<MyMVCApplication.Models.Student> Students { get; set; }
     }
 }
