@@ -58,6 +58,9 @@ namespace MyMVCApplication.Controllers
             //return RedirectToAction("Index","Home");
 
             var student = studentList.Where(s => s.StudentId == std.StudentId).FirstOrDefault();
+            //If this is going to database
+            //student.Age = std.Age;
+            //student.StudentName = std.StudentName;
             studentList.Remove(student);
             studentList.Add(std);
 
